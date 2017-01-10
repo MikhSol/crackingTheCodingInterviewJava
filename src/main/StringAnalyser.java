@@ -24,4 +24,8 @@ class StringAnalyser {
         }
         return true;
     }
+
+    static Boolean isPermutation(String first, String second) {
+        return false;
+    }
 }
