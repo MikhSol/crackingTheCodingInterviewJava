@@ -27,4 +27,10 @@ class StringAnalyserTest {
             assertEquals(t.getValue(), StringAnalyser.isUnique(t.getKey()));
     }
 
+    @Test
+    void isUniqueAscii(){
+        for (Map.Entry<String, Boolean> t : testCases)
+            assertEquals(t.getValue(), StringAnalyser.isUniqueAscii(t.getKey()));
+    }
+
 }
