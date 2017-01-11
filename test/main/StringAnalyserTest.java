@@ -14,6 +14,7 @@ class StringAnalyserTest {
     private List<Map.Entry<Map.Entry<char[] , Integer>, String>> uRLifySpacesTestCases;
     private List<Map.Entry<String, Boolean>> isPalindromeOfPermutationTestCases;
     private List<Map.Entry<String[], Boolean>> isPermittedEditOperationTestCases;
+    private List<String[]> compressStringTestCases;
 
     @BeforeEach
     void setUp() {
@@ -22,6 +23,7 @@ class StringAnalyserTest {
         uRLifySpacesTestCases = new ArrayList<>();
         isPalindromeOfPermutationTestCases = new ArrayList<>();
         isPermittedEditOperationTestCases = new ArrayList<>();
+        compressStringTestCases = new ArrayList<>();
 
         Collections.addAll(isUniqueTestCases,
                 new AbstractMap.SimpleEntry<>("ABCDEFG", true),
@@ -45,6 +47,10 @@ class StringAnalyserTest {
                 new AbstractMap.SimpleEntry<>(new String[]{"pales", "pale"}, true),
                 new AbstractMap.SimpleEntry<>(new String[]{"pale", "bale"}, true),
                 new AbstractMap.SimpleEntry<>(new String[]{"pale", "bake"}, false));
+
+        Collections.addAll(compressStringTestCases,
+                new String[] {"aabcccccaaa", "a2b1c5a3"},
+                new String[] {"abcd", "abcd"});
     }
 
     @Test
@@ -82,6 +88,12 @@ class StringAnalyserTest {
     void setIsPermittedEditOperation() throws Exception {
         for (Map.Entry<String[], Boolean> t : isPermittedEditOperationTestCases)
             assertEquals(t.getValue(), StringAnalyser.isPermittedEditOperation(t.getKey()[0], t.getKey()[1]));
+    }
+
+    @Test
+    void compressString() throws Exception {
+        for (String[] t : compressStringTestCases)
+            assertEquals(t[0], StringAnalyser.compressString(t[1]));
     }
 
 }

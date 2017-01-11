@@ -108,4 +108,8 @@ class StringAnalyser {
         }
         return changeCounter;
     }
+
+    static String compressString(String s) {
+        return "";
+    }
 }
