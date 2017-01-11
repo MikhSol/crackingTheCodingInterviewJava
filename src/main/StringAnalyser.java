@@ -1,9 +1,8 @@
 package main;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+
+import static java.lang.Math.abs;
 
 class StringAnalyser {
 
@@ -84,6 +83,28 @@ class StringAnalyser {
     }
 
     static Boolean isPermittedEditOperation(String s1, String s2) {
-        return false;
+        if (abs(s1.length() - s2.length()) > 1) return false;
+        int changeCounter = 0;
+        changeCounter = calculateStringsDifferences(s1, s2, changeCounter);
+        return changeCounter < 2;
+    }
+
+    private static int calculateStringsDifferences(String s1, String s2, int changeCounter) {
+        Set<Map.Entry<Character, Integer>> s1Count = countChars(s1).entrySet();
+        HashMap<Character, Integer> s2Count = countChars(s2);
+        for (Map.Entry<Character, Integer> el : s1Count) {
+            changeCounter += calculateElementDifferences(s2Count, el);
+        }
+        return changeCounter;
+    }
+
+    private static int calculateElementDifferences(HashMap<Character, Integer> stringElements, Map.Entry<Character, Integer> toCompare) {
+        int changeCounter = 0;
+        if (stringElements.containsKey(toCompare.getKey())) {
+            changeCounter += abs(toCompare.getValue() - stringElements.get(toCompare.getKey()));
+        } else {
+            changeCounter++;
+        }
+        return changeCounter;
     }
 }
