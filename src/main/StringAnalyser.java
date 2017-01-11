@@ -85,11 +85,12 @@ class StringAnalyser {
     static Boolean isPermittedEditOperation(String s1, String s2) {
         if (abs(s1.length() - s2.length()) > 1) return false;
         int changeCounter = 0;
-        changeCounter = calculateStringsDifferences(s1, s2, changeCounter);
+        changeCounter += calculateStringsDifferences(s1, s2);
         return changeCounter < 2;
     }
 
-    private static int calculateStringsDifferences(String s1, String s2, int changeCounter) {
+    private static int calculateStringsDifferences(String s1, String s2) {
+        int changeCounter = 0;
         Set<Map.Entry<Character, Integer>> s1Count = countChars(s1).entrySet();
         HashMap<Character, Integer> s2Count = countChars(s2);
         for (Map.Entry<Character, Integer> el : s1Count) {
