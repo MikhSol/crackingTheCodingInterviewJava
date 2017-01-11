@@ -46,4 +46,8 @@ class StringAnalyser {
         }
         return res;
     }
+
+    static String uRLifySpaces(String string, Integer trueLength) {
+        return "";
+    }
 }
