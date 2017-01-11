@@ -12,12 +12,14 @@ class StringAnalyserTest {
     private List<Map.Entry<String, Boolean>> isUniqueTestCases;
     private List<Pair<Pair<String, String>, Boolean>> isPermutationTestCases;
     private List<Map.Entry<Map.Entry<char[] , Integer>, String>> uRLifySpacesTestCases;
+    private List<Map.Entry<String, Boolean>> isPalindromeOfPermutationTestCases;
 
     @BeforeEach
     void setUp() {
         isUniqueTestCases = new ArrayList<>();
         isPermutationTestCases = new ArrayList<>();
         uRLifySpacesTestCases = new ArrayList<>();
+        isPalindromeOfPermutationTestCases = new ArrayList<>();
 
         Collections.addAll(isUniqueTestCases,
                 new AbstractMap.SimpleEntry<>("ABCDEFG", true),
@@ -30,10 +32,11 @@ class StringAnalyserTest {
         Collections.addAll(uRLifySpacesTestCases,
                 new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("   ".toCharArray(), 1), "%20"),
                 new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("Mr John Smith    ".toCharArray(), 13),
-                        "Mr%20John%20Smith")
-        );
+                        "Mr%20John%20Smith"));
 
-
+        Collections.addAll(isPalindromeOfPermutationTestCases,
+                new AbstractMap.SimpleEntry<>("Tact Coa", true),
+                new AbstractMap.SimpleEntry<>("abcd cd", false));
     }
 
     @Test
@@ -60,6 +63,13 @@ class StringAnalyserTest {
     void uRLifySpaces() throws Exception {
         for (Map.Entry<Map.Entry<char[], Integer>, String> t : uRLifySpacesTestCases) {
             assertEquals(t.getValue(), StringAnalyser.uRLifySpaces(t.getKey().getKey(), t.getKey().getValue()));
+        }
+    }
+
+    @Test
+    void isPalindromeOfPermutation() throws Exception {
+        for (Map.Entry<String, Boolean> t : isPalindromeOfPermutationTestCases) {
+            assertEquals(t.getValue(), StringAnalyser.isPalindromeOfPermutation(t.getKey()));
         }
     }
 

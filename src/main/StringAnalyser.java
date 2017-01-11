@@ -2,6 +2,8 @@ package main;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 class StringAnalyser {
 
@@ -41,7 +43,7 @@ class StringAnalyser {
             if (res.containsKey(c)) {
                 res.put(c, res.get(c) + 1);
             } else {
-                res.put(c, 0);
+                res.put(c, 1);
             }
         }
         return res;
@@ -69,5 +71,15 @@ class StringAnalyser {
                 counter += 1;
         }
         return counter;
+    }
+
+    static Boolean isPalindromeOfPermutation(String string) {
+        string = string.toLowerCase().replaceAll("\\s+", "");
+        Iterator it = countChars(string).entrySet().iterator();
+        int numbOfOdd = 0;
+        while (it.hasNext() && numbOfOdd < 2){
+            if ((int)((Map.Entry) it.next()).getValue() % 2 == 1) numbOfOdd += 1;
+        }
+        return numbOfOdd < 2;
     }
 }
