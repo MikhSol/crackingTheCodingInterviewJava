@@ -47,7 +47,27 @@ class StringAnalyser {
         return res;
     }
 
-    static String uRLifySpaces(String string, Integer trueLength) {
-        return "";
+    static String uRLifySpaces(char[] arr, int trueLength) {
+        int spaces = countSpaces(arr, trueLength);
+        int id = trueLength + 2 * spaces;
+        for (int i = trueLength - 1; i >= 0; i--) {
+            if (arr[i] == ' ') {
+                arr[id-1] = '0'; arr[id-2] = '2'; arr[id-3] = '%';
+                id -= 3;
+            } else {
+                arr[id - 1] = arr[i];
+                id--;
+            }
+        }
+        return new String(arr);
+    }
+
+    private static int countSpaces(char[] arr, int length) {
+        int counter = 0;
+        for (int i = 0; i < length; i++) {
+            if (arr[i] == ' ')
+                counter += 1;
+        }
+        return counter;
     }
 }

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StringAnalyserTest {
     private List<Map.Entry<String, Boolean>> isUniqueTestCases;
     private List<Pair<Pair<String, String>, Boolean>> isPermutationTestCases;
-    private List<Map.Entry<Map.Entry<String , Integer>, String>> uRLifySpacesTestCases;
+    private List<Map.Entry<Map.Entry<char[] , Integer>, String>> uRLifySpacesTestCases;
 
     @BeforeEach
     void setUp() {
@@ -28,8 +28,9 @@ class StringAnalyserTest {
         isPermutationTestCases.add(new Pair<>(new Pair<>("abcd", "abcc"), false));
 
         Collections.addAll(uRLifySpacesTestCases,
-                new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("   ", 1),"%20"),
-                new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("Mr John Smith    ", 13),"Mr%20John%20Smith")
+                new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("   ".toCharArray(), 1), "%20"),
+                new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>("Mr John Smith    ".toCharArray(), 13),
+                        "Mr%20John%20Smith")
         );
 
 
@@ -57,7 +58,7 @@ class StringAnalyserTest {
 
     @Test
     void uRLifySpaces() throws Exception {
-        for (Map.Entry<Map.Entry<String, Integer>, String> t : uRLifySpacesTestCases) {
+        for (Map.Entry<Map.Entry<char[], Integer>, String> t : uRLifySpacesTestCases) {
             assertEquals(t.getValue(), StringAnalyser.uRLifySpaces(t.getKey().getKey(), t.getKey().getValue()));
         }
     }
