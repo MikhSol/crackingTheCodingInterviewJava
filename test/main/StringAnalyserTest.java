@@ -93,7 +93,7 @@ class StringAnalyserTest {
     @Test
     void compressString() throws Exception {
         for (String[] t : compressStringTestCases)
-            assertEquals(t[0], StringAnalyser.compressString(t[1]));
+            assertEquals(t[1], StringAnalyser.compressString(t[0]));
     }
 
 }

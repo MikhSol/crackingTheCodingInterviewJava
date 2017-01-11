@@ -110,6 +110,25 @@ class StringAnalyser {
     }
 
     static String compressString(String s) {
-        return "";
+        String result = buildCompressedString(s);
+        if (result.length() >= s.length()) return s;
+        return result;
+    }
+
+    private static String buildCompressedString(String s) {
+        StringBuilder result = new StringBuilder();
+        int i = 1, counter = 1;
+        char c = s.charAt(0);
+        while (i < s.length()) {
+            if (c == s.charAt(i)) {
+                counter++;
+            } else {
+                result.append(c).append(counter);
+                c = s.charAt(i);
+                counter = 1;
+            }
+            i++;
+        }
+        return  result.append(c).append(counter).toString();
     }
 }
