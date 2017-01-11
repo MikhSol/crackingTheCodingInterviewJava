@@ -13,6 +13,7 @@ class StringAnalyserTest {
     private List<Pair<Pair<String, String>, Boolean>> isPermutationTestCases;
     private List<Map.Entry<Map.Entry<char[] , Integer>, String>> uRLifySpacesTestCases;
     private List<Map.Entry<String, Boolean>> isPalindromeOfPermutationTestCases;
+    private List<Map.Entry<String[], Boolean>> isPermittedEditOperationTestCases;
 
     @BeforeEach
     void setUp() {
@@ -20,6 +21,7 @@ class StringAnalyserTest {
         isPermutationTestCases = new ArrayList<>();
         uRLifySpacesTestCases = new ArrayList<>();
         isPalindromeOfPermutationTestCases = new ArrayList<>();
+        isPermittedEditOperationTestCases = new ArrayList<>();
 
         Collections.addAll(isUniqueTestCases,
                 new AbstractMap.SimpleEntry<>("ABCDEFG", true),
@@ -37,6 +39,12 @@ class StringAnalyserTest {
         Collections.addAll(isPalindromeOfPermutationTestCases,
                 new AbstractMap.SimpleEntry<>("Tact Coa", true),
                 new AbstractMap.SimpleEntry<>("abcd cd", false));
+
+        Collections.addAll(isPermittedEditOperationTestCases,
+                new AbstractMap.SimpleEntry<>(new String[]{"pale", "ple"}, true),
+                new AbstractMap.SimpleEntry<>(new String[]{"pales", "pale"}, true),
+                new AbstractMap.SimpleEntry<>(new String[]{"pale", "bale"}, true),
+                new AbstractMap.SimpleEntry<>(new String[]{"pale", "bake"}, false));
     }
 
     @Test
@@ -53,24 +61,27 @@ class StringAnalyserTest {
 
     @Test
     void isPermutation() throws Exception {
-        for (Pair<Pair<String, String>, Boolean> t : isPermutationTestCases) {
+        for (Pair<Pair<String, String>, Boolean> t : isPermutationTestCases)
             assertEquals(t.second(), StringAnalyser.isPermutation(t.first().first(),
                     t.first().second()));
-        }
     }
 
     @Test
     void uRLifySpaces() throws Exception {
-        for (Map.Entry<Map.Entry<char[], Integer>, String> t : uRLifySpacesTestCases) {
+        for (Map.Entry<Map.Entry<char[], Integer>, String> t : uRLifySpacesTestCases)
             assertEquals(t.getValue(), StringAnalyser.uRLifySpaces(t.getKey().getKey(), t.getKey().getValue()));
-        }
     }
 
     @Test
     void isPalindromeOfPermutation() throws Exception {
-        for (Map.Entry<String, Boolean> t : isPalindromeOfPermutationTestCases) {
+        for (Map.Entry<String, Boolean> t : isPalindromeOfPermutationTestCases)
             assertEquals(t.getValue(), StringAnalyser.isPalindromeOfPermutation(t.getKey()));
-        }
+    }
+
+    @Test
+    void setIsPermittedEditOperation() throws Exception {
+        for (Map.Entry<String[], Boolean> t : isPermittedEditOperationTestCases)
+            assertEquals(t.getValue(), StringAnalyser.isPermittedEditOperation(t.getKey()[0], t.getKey()[1]));
     }
 
 }

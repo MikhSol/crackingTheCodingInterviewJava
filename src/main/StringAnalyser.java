@@ -82,4 +82,8 @@ class StringAnalyser {
         }
         return numbOfOdd < 2;
     }
+
+    static Boolean isPermittedEditOperation(String s1, String s2) {
+        return false;
+    }
 }
