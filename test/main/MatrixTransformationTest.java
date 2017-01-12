@@ -32,9 +32,9 @@ public class MatrixTransformationTest {
                 {1, 0, 1, 1, 1}
         };
         int[][] result = new int[][] {
-                {1, 1, 1, 0, 1},
+                {1, 0, 1, 0, 1},
                 {0, 0, 0, 0, 0},
-                {1, 1, 1, 0, 1},
+                {1, 0, 1, 0, 1},
                 {0, 0, 0, 0, 0}
         };
         assertArrayEquals(result, MatrixTransformation.zeroefyMatrix(matrix));

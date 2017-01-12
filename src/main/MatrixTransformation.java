@@ -1,5 +1,9 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 class MatrixTransformation {
     static int[][] rotateTo90Degrees(int[][] matrix) {
         int n = matrix.length;
@@ -28,6 +32,37 @@ class MatrixTransformation {
     }
 
     static int[][] zeroefyMatrix(int[][] matrix) {
+        List<List<Integer>> zeroes = findZeroes(matrix);
+        zeroefyRows(matrix, zeroes.get(0));
+        zeroefyCols(matrix, zeroes.get(1));
         return matrix;
+    }
+
+    private static void zeroefyCols(int[][] matrix, List<Integer> columns) {
+        for (Integer col : columns) {
+            for (int i = 0; i < matrix.length; i++)
+                matrix[i][col] = 0;
+        }
+    }
+
+    private static void zeroefyRows(int[][] matrix, List<Integer> rows) {
+        for (Integer row : rows) {
+            for (int i = 0; i < matrix[0].length; i++)
+                matrix[row][i] = 0;
+        }
+    }
+
+    private static List<List<Integer>> findZeroes(int[][] matrix) {
+        List<List<Integer>> zeroes = new ArrayList<>();
+        Collections.addAll(zeroes, new ArrayList<>(), new ArrayList<>());
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    zeroes.get(0).add(i);
+                    zeroes.get(1).add(j);
+                }
+            }
+        }
+        return zeroes;
     }
 }
