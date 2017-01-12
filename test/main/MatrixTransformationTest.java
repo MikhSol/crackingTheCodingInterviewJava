@@ -22,4 +22,21 @@ public class MatrixTransformationTest {
         };
         assertArrayEquals(result, MatrixTransformation.rotateTo90Degrees(matrix));
     }
+
+    @Test
+    void zeroefyMatrix() throws Exception {
+        int[][] matrix = new int[][] {
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 0, 1},
+                {1, 1, 1, 1, 1},
+                {1, 0, 1, 1, 1}
+        };
+        int[][] result = new int[][] {
+                {1, 1, 1, 0, 1},
+                {0, 0, 0, 0, 0},
+                {1, 1, 1, 0, 1},
+                {0, 0, 0, 0, 0}
+        };
+        assertArrayEquals(result, MatrixTransformation.zeroefyMatrix(matrix));
+    }
 }

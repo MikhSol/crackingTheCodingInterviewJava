@@ -26,4 +26,8 @@ class MatrixTransformation {
         matrix[lastLayer][lastLayer - offset] = matrix[currentLayer][lastLayer];
         matrix[currentLayer][lastLayer] = tmp;
     }
+
+    static int[][] zeroefyMatrix(int[][] matrix) {
+        return matrix;
+    }
 }
