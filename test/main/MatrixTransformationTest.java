@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class MatrixTransformationTest {
+class MatrixTransformationTest {
     @Test
     void rotateTo90Degrees() throws Exception {
         int[][] matrix = new int[][] {
