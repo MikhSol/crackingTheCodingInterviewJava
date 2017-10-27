@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StackProblemTest {
+class TripleStackTest {
     private final int capacity = 100;
     private TripleStack s;
 
