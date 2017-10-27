@@ -19,12 +19,10 @@ class GraphUtility {
             visited.add(startNode);
 
             for (Node child : startNode.childes) {
-                if (visited.contains(child)) {
-                    continue;
-                }
-                path.addAll(findPathDS(graph, child, endNode));
-                if (path.get(path.size() - 1) != endNode) {
-                    path.remove(path.size() - 1);
+                if (!visited.contains(child)) {
+                    path.addAll(findPathDS(graph, child, endNode));
+                    if (path.get(path.size() - 1) != endNode)
+                        path.remove(path.size() - 1);
                 }
             }
 
