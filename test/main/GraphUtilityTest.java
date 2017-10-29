@@ -129,4 +129,56 @@ class GraphUtilityTest {
         // Assert deep first search
         assertEquals(pathAO1, utility.findPathDS(graph, a, o));
     }
+
+    @Test
+    void testBuildMinimalHeightBinarySearchTreeFromOrderedIntegerElementArray() {
+        int[] t1 = {1};
+        Node result =  utility.binTreeFromArray(t1);
+        assertEquals(1, result.value);
+
+        int[] t2 = {1, 2};
+        result = utility.binTreeFromArray(t2);
+        assertEquals(2, result.value);
+        assertEquals(1, result.left.value);
+
+        int[] t3 = {1, 2, 3};
+        result = utility.binTreeFromArray(t3);
+        assertEquals(2, result.value);
+        assertEquals(1, result.left.value);
+        assertEquals(3, result.right.value);
+
+        int[] t4 = {1, 2, 3, 4};
+        result = utility.binTreeFromArray(t4);
+        assertEquals(3, result.value);
+        assertEquals(2, result.left.value);
+        assertEquals(1, result.left.left.value);
+        assertEquals(4, result.right.value);
+
+        int[] t5 = {1, 2, 3, 4, 5};
+        result = utility.binTreeFromArray(t5);
+        assertEquals(3, result.value);
+        assertEquals(2, result.left.value);
+        assertEquals(1, result.left.left.value);
+        assertEquals(5, result.right.value);
+        assertEquals(4, result.right.left.value);
+
+        int[] t6 = {1, 2, 3, 4, 5, 6};
+        result = utility.binTreeFromArray(t6);
+        assertEquals(4, result.value);
+        assertEquals(2, result.left.value);
+        assertEquals(1, result.left.left.value);
+        assertEquals(3, result.left.right.value);
+        assertEquals(6, result.right.value);
+        assertEquals(5, result.right.left.value);
+
+        int[] t7 = {1, 2, 3, 4, 5, 6, 7};
+        result = utility.binTreeFromArray(t7);
+        assertEquals(4, result.value);
+        assertEquals(2, result.left.value);
+        assertEquals(1, result.left.left.value);
+        assertEquals(3, result.left.right.value);
+        assertEquals(6, result.right.value);
+        assertEquals(5, result.right.left.value);
+        assertEquals(7, result.right.right.value);
+    }
 }
