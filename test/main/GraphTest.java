@@ -11,12 +11,14 @@ class GraphTest {
     private Graph gr;
     private Node node;
     private Node c;
+    private Node b;
 
     @BeforeEach
     void setUp() {
         gr = new Graph();
         node = new Node("A");
         c = new Node("B");
+        b = new Node("B");
     }
 
     @Test
@@ -46,8 +48,19 @@ class GraphTest {
     }
 
     @Test
-    void testNodeHasName() {
-        node = new Node("A");
-        assertEquals("A", node.name);
+    void testNodeHasValue() {
+        assertEquals("A", node.value);
+    }
+
+    @Test
+    void testNodeHasLeftNode() {
+        node.left = b;
+        assertEquals(b, node.left);
+    }
+
+    @Test
+    void testNodeHasRightNode() {
+        node.right = b;
+        assertEquals(b, node.right);
     }
 }

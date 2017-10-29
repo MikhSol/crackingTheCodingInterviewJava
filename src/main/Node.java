@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 class Node {
     ArrayList<Node> childes;
-    String name;
+    Object value;
+    Node left;
+    Node right;
 
-    Node(String n) {
-        name = n;
+    Node(Object n) {
+        value = n;
         childes = new ArrayList<>();
     }
 }
