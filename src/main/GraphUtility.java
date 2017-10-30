@@ -1,7 +1,11 @@
 package main;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+
+import static java.lang.Math.pow;
 
 class GraphUtility {
     static private ArrayList<Node> visited;
@@ -63,5 +67,39 @@ class GraphUtility {
 
     private boolean isSingleElementArray(int len) {
         return len < 2;
+    }
+
+    ArrayList<LinkedList> listOfDepth(Node tree) {
+        ArrayList<LinkedList> result = new ArrayList<>();
+        ArrayDeque<Node> bfsList = bfs(tree);
+        int level = 0;
+        int len = bfsList.size();
+        while (len > 0) {
+            LinkedList<Node> listForLevel = new LinkedList<>();
+            double levelLen = pow(2, level);
+            while (levelLen > 0 && len > 0) {
+                listForLevel.add(bfsList.removeFirst());
+                len--;
+                levelLen--;
+            }
+            level++;
+            if (listForLevel.size() > 0) result.add(listForLevel);
+        }
+        return result;
+    }
+
+    private ArrayDeque<Node> bfs(Node tree) {
+        ArrayDeque<Node> result = new ArrayDeque<>();
+        ArrayDeque<Node> q = new ArrayDeque<>();
+        q.add(tree);
+        while (!q.isEmpty()) {
+            Node current = q.removeFirst();
+            result.add(current);
+            if (current.left != null)
+                q.add(current.left);
+            if (current.right != null)
+                q.add(current.right);
+        }
+        return result;
     }
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -180,5 +181,91 @@ class GraphUtilityTest {
         assertEquals(6, result.right.value);
         assertEquals(5, result.right.left.value);
         assertEquals(7, result.right.right.value);
+    }
+
+    @Test
+    void testListOfDepths() {
+        Node a = new Node(1);
+        ArrayList<LinkedList> r = utility.listOfDepth(a);
+        ArrayList<LinkedList> expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(a))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+
+        Node b = new Node(2);
+        b.left = a;
+        r = utility.listOfDepth(b);
+        expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(b)),
+                        new LinkedList<>(Arrays.asList(a))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+        assertEquals(expected.get(1), r.get(1));
+
+
+        Node c = new Node(3);
+        b.right = c;
+        r = utility.listOfDepth(b);
+        expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(b)),
+                        new LinkedList<>(Arrays.asList(a, c))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+        assertEquals(expected.get(1), r.get(1));
+
+        Node d = new Node(4);
+        c.left = b;
+        b.left = a;
+        b.right = null;
+        c.right = d;
+        r = utility.listOfDepth(c);
+        expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(c)),
+                        new LinkedList<>(Arrays.asList(b, d)),
+                        new LinkedList<>(Arrays.asList(a))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+        assertEquals(expected.get(1), r.get(1));
+        assertEquals(expected.get(2), r.get(2));
+
+        Node e = new Node(5);
+        c.right = e;
+        e.left = d;
+        r = utility.listOfDepth(c);
+        expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(c)),
+                        new LinkedList<>(Arrays.asList(b, e)),
+                        new LinkedList<>(Arrays.asList(a, d))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+        assertEquals(expected.get(1), r.get(1));
+        assertEquals(expected.get(2), r.get(2));
+
+        Node f = new Node(6);
+        d.left = b;
+        b.left = a;
+        b.right = c;
+        a.left = null;
+        a.right = null;
+        c.left = null;
+        c.right = null;
+        d.right = f;
+        f.left = e;
+        e.left = null;
+        r = utility.listOfDepth(d);
+        expected = new ArrayList<>(
+                Arrays.asList(
+                        new LinkedList<>(Arrays.asList(d)),
+                        new LinkedList<>(Arrays.asList(b, f)),
+                        new LinkedList<>(Arrays.asList(a, c, e))));
+        assertEquals(expected.size(), r.size());
+        assertEquals(expected.get(0), r.get(0));
+        assertEquals(expected.get(1), r.get(1));
+        assertEquals(expected.get(2), r.get(2));
     }
 }
