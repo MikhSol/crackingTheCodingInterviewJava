@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GraphUtilityTest {
@@ -267,5 +268,17 @@ class GraphUtilityTest {
         assertEquals(expected.get(0), r.get(0));
         assertEquals(expected.get(1), r.get(1));
         assertEquals(expected.get(2), r.get(2));
+    }
+
+    @Test
+    void testIsBalanced() {
+        assertTrue(utility.isBalanced(a));
+
+        a.left = b;
+        b.left = c;
+        assertFalse(utility.isBalanced(a));
+
+        a.right = d;
+        assertTrue(utility.isBalanced(a));
     }
 }

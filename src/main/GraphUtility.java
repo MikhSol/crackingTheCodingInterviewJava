@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 class GraphUtility {
@@ -101,5 +102,18 @@ class GraphUtility {
                 q.add(current.right);
         }
         return result;
+    }
+
+    boolean isBalanced(Node node) {
+        if (node.left == null && node.right == null) return true;
+        int leftLen = 1;
+        int rightLen = 1;
+        if (node.left != null) leftLen += treeHeight(node.left);
+        if (node.right != null) rightLen += treeHeight(node.right);
+        return abs(leftLen-rightLen)<2;
+    }
+
+    private int treeHeight(Node node) {
+        return listOfDepth(node).size();
     }
 }
