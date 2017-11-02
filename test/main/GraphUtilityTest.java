@@ -59,7 +59,7 @@ class GraphUtilityTest {
     }
 
     @Test
-    void testFindRouteTreeLikeGraph() throws AbsentNodeException {
+    void testFindRouteInTreeLikeGraph() throws AbsentNodeException {
         graph.nodes.addAll(Arrays.asList(a, b, c, d));
         a.childes.add(b);
         a.childes.add(c);
@@ -68,7 +68,7 @@ class GraphUtilityTest {
     }
 
     @Test
-    void testFindRouteTreeLikeDirectedGraph() throws AbsentNodeException {
+    void testFindRouteInTreeLikeDirectedGraph() throws AbsentNodeException {
         graph.nodes.addAll(Arrays.asList(a, b, c, d));
         a.childes.add(b);
         a.childes.add(c);
