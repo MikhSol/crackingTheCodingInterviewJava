@@ -48,4 +48,17 @@ class DynamicProblemSolverTest {
         s = DynamicProblemSolver.tripleStepMemo(6);
         assertEquals(24, s);
     }
+
+    @Test
+    void testMagicIndex() {
+        assertEquals(0, DynamicProblemSolver.magicIndex(new int[]{0}));
+        assertEquals(-1, DynamicProblemSolver.magicIndex(new int[]{1}));
+    }
+
+    @Test
+    void testMagicIndexBinarySearch() {
+        assertEquals(0, DynamicProblemSolver.magicIndexBS(new int[]{0}));
+        assertEquals(-1, DynamicProblemSolver.magicIndexBS(new int[]{1}));
+        assertEquals(4, DynamicProblemSolver.magicIndexBS(new int[]{-6, -4, -1, 1, 4, 8, 34}));
+    }
 }
